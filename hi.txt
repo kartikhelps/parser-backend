@@ -1,0 +1,11 @@
+
+const main = (data, file, out, path) => {
+  // console.log(data)
+  const templateContent = fs.readFileSync(file, 'utf-8');
+  const template = Handlebars.compile(templateContent);
+ 
+  const reactFileContent = template(jsonData);
+
+  // console.log("here is data",componentName)
+  createFile(reactFileContent, out, path)
+}

@@ -1,0 +1,483 @@
+{
+  "models": [
+    {
+      "name": "Login",
+      "fields": [
+        {
+          "Section_name": "Onload_Config",
+          "component_type": "",
+          "Fieldname": "",
+          "label": "",
+          "FieldType": "",
+          "MappingField": "",
+          "Mandatory": "",
+          "Placeholder": "",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "",
+          "Default": "",
+          "Action": "{Actions: [ { step: 1, type: \"ShowSection\", fields: { Signin: true, Signup: false, Verification: false } }, { step: 2, type: \"CallAPI\", fields: { type: \"get\", route: \"master/\" }, Success: [{ step: 1, type: \"setVar\", fields: { vars: \"masters\" } }], Error: [{ step: 1, type: \"SetErr\", fields: { error: \"response.err\" } }] } ] } "
+        },
+        {
+          "Section_name": "Signin",
+          "component_type": "Form",
+          "Fieldname": "email",
+          "label": "Email",
+          "FieldType": "Textbox",
+          "MappingField": "Users.email",
+          "Mandatory": "Yes",
+          "Placeholder": "Enter UserName",
+          "ErrorMsg": "Format not Correct",
+          "Validation": "Regex.email"
+        },
+        {
+          "Section_name": "Signin",
+          "component_type": "Form",
+          "Fieldname": "password",
+          "label": "Password",
+          "FieldType": "Password",
+          "MappingField": "Users.Password",
+          "Mandatory": "Yes",
+          "Placeholder": "Enter Password",
+          "ErrorMsg": "Should have at least 5 characters with 1 number",
+          "Validation": "Regex.password"
+        },
+        {
+          "Section_name": "Signin",
+          "component_type": "Form",
+          "Fieldname": "Login",
+          "label": "Login",
+          "FieldType": "Button",
+          "MappingField": "",
+          "Mandatory": "",
+          "Placeholder": "",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "",
+          "Default": "",
+          "Action": "{Actions: [  {step: 1,type:\"CallAPI\",fields: {type:\"post\",route:\"users/login\"}, Success: [{step: 1, type:\"Redirect\",fields:{url:\"Home\"}}, {step:2,type:\"PassParam\",fields:{ value:\"Response.authToken\"}},],Error: [{step: 1, type:\"SetErr\",fields: {error:\"Response.err\",}}]}]}"
+        },
+        {
+          "Section_name": "Signup",
+          "component_type": "Form",
+          "Fieldname": "country",
+          "label": "Country",
+          "FieldType": "Dropdown",
+          "MappingField": "Users.Country",
+          "Mandatory": "Yes",
+          "Placeholder": " ",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "masters.country"
+        },
+        {
+          "Section_name": "Signup",
+          "component_type": "Form",
+          "Fieldname": "email",
+          "label": "Email",
+          "FieldType": "Textbox",
+          "MappingField": "Users.email",
+          "Mandatory": "Yes",
+          "Placeholder": "Enter UserName",
+          "ErrorMsg": "Format not Correct",
+          "Validation": "Regex.email"
+        },
+        {
+          "Section_name": "Signup",
+          "component_type": "Form",
+          "Fieldname": "password",
+          "label": "Password",
+          "FieldType": "Password",
+          "MappingField": "Users.Password",
+          "Mandatory": "Yes",
+          "Placeholder": "Enter Password",
+          "ErrorMsg": "Should have at least 5 characters with 1 number",
+          "Validation": "Regex.password"
+        },
+        {
+          "Section_name": "Signup",
+          "component_type": "Form",
+          "Fieldname": "confirmPassword",
+          "label": "Confirm Password",
+          "FieldType": "Password",
+          "MappingField": "",
+          "Mandatory": "Yes",
+          "Placeholder": "Enter Password",
+          "ErrorMsg": "Same as Password",
+          "Validation": "Field.eq(password)"
+        },
+        {
+          "Section_name": "Signup",
+          "component_type": "Form",
+          "Fieldname": "Submit",
+          "label": "Submit",
+          "FieldType": "Button",
+          "MappingField": "",
+          "Mandatory": "",
+          "Placeholder": "",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "",
+          "Default": "",
+          "Action": "{Actions:[{step: 1,type:\"CallAPI\",fields:{type: \"post\", route:\"users/\"}, Success: [{step: 1,type:\"ShowSection\",fields:{Verification: true,Signin: false, Signup: false}}],Error: [{step: 1, type:\"setErr\",fields: { error:\"Response.err\"}}]}]}"
+        },
+        {
+          "Section_name": "Verification",
+          "component_type": "Form",
+          "Fieldname": "verificationCode",
+          "label": "Verification Code",
+          "FieldType": "Textbox",
+          "MappingField": "Users.verificationCode",
+          "Mandatory": "Yes"
+        },
+        {
+          "Section_name": "Verification",
+          "component_type": "Form",
+          "Fieldname": "Submit",
+          "label": "Submit",
+          "FieldType": "Button",
+          "MappingField": "",
+          "Mandatory": "Yes",
+          "Placeholder": "",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "",
+          "Default": "",
+          "Action": "{ Actions:[ { step: 1, type: \"CallAPI\", fields: { type: \"post\", route: \"users/otp\"}, Success: [{ step: 1, type: \"Redirect\", fields: { url: \"Home\" } },{ step: 2, type: \"PassParam\", fields: { value: \"Response.authToken\" } }\n],Error: [{ step: 1, type: \"setErr\", fields: {Error:\"ResponseErr\"} } ]}] }"
+        },
+        {
+          "Section_name": "Header",
+          "component_type": "Nav",
+          "Fieldname": "Signin",
+          "label": "",
+          "FieldType": "",
+          "MappingField": "",
+          "Mandatory": "",
+          "Placeholder": "",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "",
+          "Default": "",
+          "Action": "{Actions:[{step:1,type:'ShowSection',fields:{Signin:true,Verification:false,Signup:false}}]}"
+        },
+        {
+          "Section_name": "Header",
+          "component_type": "Nav",
+          "Fieldname": "Signup",
+          "label": "",
+          "FieldType": "",
+          "MappingField": "",
+          "Mandatory": "",
+          "Placeholder": "",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "",
+          "Default": "",
+          "Action": "{Actions:[{step:1,type:'ShowSection',fields:{Signin:false,Verification:false,Signup:true}}]}"
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "fields": [
+        {
+          "Section_name": "Onload_Config",
+          "component_type": "",
+          "Fieldname": "",
+          "label": "",
+          "FieldType": "",
+          "MappingField": "",
+          "Mandatory": "",
+          "Placeholder": "",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "",
+          "Default": "",
+          "Action": "{\nActions:[{step:1,type:\"ShowSection\",fields:{ListView:true}}]\n}"
+        },
+        { "Section_name": "Heading", "component_type": "Typography" },
+        { "Section_name": "DataInfo", "component_type": "Cards" },
+        { "Section_name": "Charts", "component_type": "BarChart" },
+        { "Section_name": "Charts", "component_type": "LineChart" },
+        { "Section_name": "Charts", "component_type": "DoughNutChart" },
+        { "Section_name": "Charts", "component_type": "VerticalBarChart" },
+        {
+          "Section_name": "Sidebar",
+          "component_type": "Sidebar",
+          "Fieldname": "dashboard",
+          "label": "Dashboard"
+        },
+        {
+          "Section_name": "Sidebar",
+          "component_type": "Sidebar",
+          "Fieldname": "sales",
+          "label": "sales"
+        },
+        {
+          "Section_name": "Sidebar",
+          "component_type": "Sidebar",
+          "Fieldname": "calliing",
+          "label": "calling"
+        },
+        {
+          "Section_name": "Sidebar",
+          "component_type": "Sidebar",
+          "Fieldname": "coaching",
+          "label": "Coaching"
+        },
+        {
+          "Section_name": "Header",
+          "component_type": "Nav",
+          "Fieldname": "notification",
+          "label": "Notification",
+          "FieldType": "Button"
+        },
+        {
+          "Section_name": "Header",
+          "component_type": "Nav",
+          "Fieldname": "profile",
+          "label": "Profile",
+          "FieldType": "Button"
+        },
+        { "Section_name": "Card_1" },
+        { "Section_name": "Card_2" },
+        { "Section_name": "Card_3" }
+      ]
+    },
+    {
+      "name": "TableView",
+      "fields": [
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "potential_deal_size",
+          "label": "potenential deal",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "win_probability",
+          "label": "win",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "created_by",
+          "label": "created",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "customer_name",
+          "label": "customer name",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "inquiry",
+          "label": "inquiry",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "existing_budget",
+          "label": "budget",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "leadStage",
+          "label": "lead stage",
+          "FieldType": "dropdown"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "lead_title",
+          "label": "lead title",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "notes",
+          "label": "notes",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "source",
+          "label": "source",
+          "FieldType": "dropdown"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "leadId",
+          "label": "lead id",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "lead_description",
+          "label": "description",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "leadStatus",
+          "label": "status",
+          "FieldType": "dropdown"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "ownsers",
+          "label": "owners",
+          "FieldType": "textbox"
+        },
+        {
+          "Section_name": "ListSection",
+          "component_type": "ListRender",
+          "Fieldname": "actions",
+          "label": "action",
+          "FieldType": "textbox"
+        }
+      ]
+    },
+    {
+      "name": "Home",
+      "fields": [
+        {
+          "Section_name": "Home",
+          "component_type": "",
+          "Fieldname": "masters"
+        },
+        {
+          "Section_name": "Header",
+          "component_type": "Nav",
+          "Fieldname": "dashboard",
+          "label": "Dashboard"
+        },
+        {
+          "Section_name": "Header",
+          "component_type": "Nav",
+          "Fieldname": "list",
+          "label": "List View"
+        },
+        {
+          "Section_name": "Leads",
+          "component_type": "ListView",
+          "Fieldname": "Name",
+          "label": "Name",
+          "FieldType": "Textbox"
+        },
+        {
+          "Section_name": "Listview",
+          "component_type": "List",
+          "Fieldname": "Email",
+          "label": "Email",
+          "FieldType": "Email"
+        },
+        {
+          "Section_name": "Listview",
+          "component_type": "List",
+          "Fieldname": "_id",
+          "label": "id",
+          "FieldType": "null",
+          "MappingField": "leads.-id",
+          "Mandatory": "",
+          "Placeholder": "",
+          "ErrorMsg": "",
+          "Validation": "",
+          "Masters": "masters.source"
+        },
+        {
+          "Section_name": "Listview",
+          "component_type": "List",
+          "Fieldname": "Actions",
+          "label": "Delete",
+          "FieldType": "Button"
+        },
+        {
+          "Section_name": "Listview",
+          "component_type": "List",
+          "Fieldname": "No ",
+          "label": "Number",
+          "FieldType": "Textbox"
+        },
+        {
+          "Section_name": "Header",
+          "component_type": "Nav",
+          "Fieldname": "edit",
+          "label": "Edit"
+        },
+        {
+          "Section_name": "Add_Person",
+          "component_type": "Form",
+          "Fieldname": "name",
+          "label": "Name",
+          "FieldType": "Textbox"
+        },
+        {
+          "Section_name": "Add_Person",
+          "component_type": "Form",
+          "Fieldname": "email",
+          "label": "Email",
+          "FieldType": "Textbox"
+        },
+        {
+          "Section_name": "Add_Person",
+          "component_type": "Form",
+          "Fieldname": "submit",
+          "label": "Submit",
+          "FieldType": "Button"
+        },
+        {
+          "Section_name": "Modal_Add",
+          "component_type": "Dialog",
+          "Fieldname": "title",
+          "label": "Title",
+          "FieldType": "Textbox"
+        },
+        {
+          "Section_name": "Modal_Add",
+          "component_type": "Dialog",
+          "Fieldname": "description",
+          "label": "Description",
+          "FieldType": "Textbox"
+        },
+        {
+          "Section_name": "Modal_Add",
+          "component_type": "Dialog",
+          "Fieldname": "id",
+          "label": "Id",
+          "FieldType": "Textbox"
+        },
+        {
+          "Section_name": "Modal_Add",
+          "component_type": "Dialog",
+          "Fieldname": "date",
+          "label": "Date",
+          "FieldType": "Textbox"
+        },
+        {
+          "Section_name": "Modal_Add",
+          "component_type": "Dialog",
+          "Fieldname": "submit",
+          "label": "Create",
+          "FieldType": "Button"
+        }
+      ]
+    }
+  ]
+}
